@@ -8,6 +8,7 @@ use App\Models\Lapangan;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Forms\Components\TextInput\Mask;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -33,6 +34,7 @@ class LapanganResource extends Resource
     {
         return "Lapangan";
     }
+    protected static ?string $navigationGroup = 'Lapangan';
 
     public static function form(Form $form): Form
     {
@@ -45,7 +47,12 @@ class LapanganResource extends Resource
                 TextInput::make('harga')
                     ->numeric()
                     ->required()
-                    ->thausandsSeparator(','),
+                    ->mask(
+                        fn (Forms\Components\TextInput\Mask $mask) => $mask
+                            ->numeric()
+                            ->thousandsSeparator(',')
+                    ),
+
             ]);
     }
 
@@ -57,7 +64,7 @@ class LapanganResource extends Resource
                 TextColumn::make('nama'),
                 TextColumn::make('deskripsi'),
                 TextColumn::make('harga')
-                    ->money('ldr'),
+                    ->money('idr'),
             ])
             ->filters([
                 //

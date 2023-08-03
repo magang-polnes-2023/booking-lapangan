@@ -30,6 +30,8 @@ class UserResource extends Resource
         return "User";
     }
 
+    protected static ?string $navigationGroup = 'User Management';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -49,7 +51,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('password'),
+                Tables\Columns\TextColumn::make('usertype'),
             ])
             ->filters([
                 //

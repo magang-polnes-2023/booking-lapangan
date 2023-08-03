@@ -21,7 +21,8 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->string('bukti')->nullable();
-            $table->string('status')->nullable();
+            $table->integer('total');
+            $table->string('status')->nullable()->default('belum dibayar');
             $table->timestamps();
         });
     }

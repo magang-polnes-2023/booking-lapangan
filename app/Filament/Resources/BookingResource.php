@@ -38,6 +38,8 @@ class BookingResource extends Resource
         return "Booking";
     }
 
+    protected static ?string $navigationGroup = 'Booking';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -58,12 +60,9 @@ class BookingResource extends Resource
                         DatePicker::make('tanggal')
                             ->label('Tanggal Booking')
                             ->required(),
-                        Select::make('durasi')
-                            ->options([
-                                '1' => '1',
-                                '2' => '2',
-                                '3' => '3',
-                            ])
+                        TextInput::make('durasi')
+                            ->label('Durasi Booking')
+                            ->numeric()
                             ->required(),
                         TimePicker::make('start_time')
                             ->label('Waktu Mulai')
@@ -77,7 +76,9 @@ class BookingResource extends Resource
                             ->options([
                                 'belum dibayar' => 'Belum Dibayar',
                                 'sudah dibayar' => 'Sudah Dibayar',
-                                'digunakan' => 'Digunakan',
+                                'canceled' => 'Canceled',
+                                'Sedang Diverifikasi' => 'Sedang Diverifikasi',
+                                'selesai' => 'Selesai',
                             ]),
                     ]),
 
@@ -99,9 +100,14 @@ class BookingResource extends Resource
                     ->options([
                         'belum dibayar' => 'Belum Dibayar',
                         'sudah dibayar' => 'Sudah Dibayar',
+                        'canceled' => 'Canceled',
+                        'Sedang Diverifikasi' => 'Sedang Diverifikasi',
+                        'selesai' => 'Selesai',
                         'digunakan' => 'Digunakan',
+
                     ])
-            ])
+            ])->defaultSort('created_at', 'desc')
+
             ->filters([
                 //
             ])

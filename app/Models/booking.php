@@ -19,6 +19,7 @@ class booking extends Model
         'end_time',
         'bukti',
         'total',
+        'status',
     ];
 
     public function user()

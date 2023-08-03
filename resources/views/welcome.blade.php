@@ -1,94 +1,127 @@
-@extends('template.layouts')
-
-@section('konten')
-    <header class="bg-white dark:bg-gray-900">
-        <div class="container px-6 py-10 mx-auto">
+<x-app-layout>
+    <header class="bg-white dark:bg-gray-900 h-full">
+        <div class="container py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="items-center lg:flex">
                 <div class="w-full lg:w-1/2">
                     <div class="lg:max-w-lg">
-                        <h1 class="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Best place to choose
-                            <br> your <span class="text-blue-500 ">clothes</span>
+                        <h1 class="text-3xl font-serif font-semibold text-gray-800 dark:text-white lg:text-4xl">Best
+                            place to
+                            choose
+                            <br> The <span class="text-blue-500 ">Field</span>
                         </h1>
 
-                        <p class="mt-3 text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio.
+                        <p class="text-justify mt-3 text-gray-600 dark:text-gray-400">Selamat datang di The Field, tempat
+                            favorit Anda untuk memesan lapangan. Kami memberikan solusi terbaik
+                            untuk penggemar olahraga, klub, dan individu yang mencari dan memesan bidang yang sesuai
+                            dengan kebutuhan mereka.
                         </p>
-
-                        <button
-                            class="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">Shop
-                            Now</button>
+                        <a href="{{ Route('lapangan') }}">
+                            <button
+                                class="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">Pesan
+                                Sekarang</button>
+                        </a>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                    <img class="w-full h-full lg:max-w-3xl" src="{{ asset('gambar/icon-hero.png') }}"
-                        alt="Catalogue-pana.svg">
+                <div class="grid py-5 grid-cols-2 md:grid-cols-2 gap-4">
+                    <div class="grid gap-4">
+                        <div class="">
+                            <img class="h-[22rem] w-72 rounded" src="{{ asset('gambar/bola.jpg') }}">
+                        </div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div>
+                            <img class="h-[18rem] w-72 rounded" src="{{ asset('gambar/voli.jpg') }}" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="text-center py-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mt-4">
+                <span class="w-1/5 border-b-4 border-gray-400 lg:w-1/4"></span>
+
+                <p class="text-2xl pb-6 text-center text-gray-950 uppercase dark:text-gray-400">About</p>
+
+                <span class="w-1/5 border-b-4 border-gray-400 lg:w-1/4"></span>
+            </div>
+
+            <p class="max-w-6xl mx-auto mt-4 text-gray-700">
+                Selamat datang di platform kami! Kami adalah tempat terbaik untuk pembokingan lapangan olahraga yang
+                mudah dan praktis, menyediakan solusi terbaik bagi para penggemar olahraga, klub, dan individu yang
+                ingin mencari dan memesan lapangan sesuai kebutuhan mereka. Apakah Anda mencari lapangan futsal, basket,
+                atau voli, semua tersedia di sini.Nikmati harga yang terjangkau. Jadwalkan lapangan Anda sekarang juga
+                dan tingkatkan pengalaman berolahraga Anda ke level yang lebih tinggi. Terima kasih atas kepercayaan
+                Anda menggunakan layanan kami.
+            </p>
+        </div>
+
+        <div class="text-center py-3 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center py-10 justify-between mt-4">
+                <span class="w-1/5 border-b-4 border-gray-400 lg:w-1/4"></span>
+
+                <p class="text-2xl text-center text-gray-950 uppercase dark:text-gray-400">Galeri Lapangan</p>
+
+                <span class="w-1/5 border-b-4 border-gray-400 lg:w-1/4"></span>
+            </div>
+
+
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid gap-4">
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri1.jpg') }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri2.jpg') }}"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="grid gap-4">
+                    <div>
+                        <img class="h-[30rem] w-full rounded-lg" src="{{ asset('gambar/galeri10.jpg') }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri9.jpg') }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <img class="h-full max-w-full rounded-lg" src="{{ asset('gambar/galeri7.jpg') }}"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="grid gap-4">
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri4.jpg') }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri8.jpg') }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <img class="h-full max-w-full rounded-lg" src="{{ asset('gambar/galeri6.jpg') }}"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="grid gap-4">
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri5.jpg') }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('gambar/galeri3.jpg') }}"
+                            alt="">
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </header>
-
-
-    <section class="bg-white dark:bg-gray-900">
-        <div class="container px-6 py-10 mx-auto">
-            <div class="text-center">
-                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">From the blog</h1>
-
-                <p class="max-w-lg mx-auto mt-4 text-gray-500">
-                    Salami mustard spice tea fridge authentic Chinese food dish salt tasty liquor. Sweet savory foodtruck
-                    pie.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
-                <div>
-                    <div class="relative overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                        <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                            src="{{ asset('gambar/lapangan-voli.jpg') }}" alt="Lapangan voli">
-                        <div class="p-6">
-                            <h1 class="text-xl font-bold text-gray-800 dark:text-white">Lapangan Voli</h1>
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Modi quos quidem sequi illum facere recusandae voluptatibus</p>
-                        </div>
-                        <div class="flex items-center justify-center px-6 py-3 bg-gray-900">
-                            <button
-                                class="px-4 py-2 text-xs font-semibold text-white uppercase bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-700">Pesan</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="relative overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                        <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                            src="{{ asset('gambar/lapangan-basket.jpg') }}" alt="Lapangan basket">
-                        <div class="p-6">
-                            <h1 class="text-xl font-bold text-gray-800 dark:text-white">Lapangan Basket</h1>
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Modi quos quidem sequi illum facere recusandae voluptatibus</p>
-                        </div>
-                        <div class="flex items-center justify-center px-6 py-3 bg-gray-900">
-                            <button
-                                class="px-4 py-2 text-xs font-semibold text-white uppercase bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-700">Pesan</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="relative overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                        <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                            src="{{ asset('gambar/1.jpg') }}" alt="Lapangan futsal">
-                        <div class="p-6">
-                            <h1 class="text-xl font-bold text-gray-800 dark:text-white">Lapangan Futsal</h1>
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Modi quos quidem sequi illum facere recusandae voluptatibus</p>
-                        </div>
-                        <div class="flex items-center justify-center px-6 py-3 bg-gray-900">
-                            <button
-                                class="px-4 py-2 text-xs font-semibold text-white uppercase bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-700">Pesan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-@endsection
+</x-app-layout>
