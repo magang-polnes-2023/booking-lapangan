@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="grid py-5 grid-cols-2 md:grid-cols-2 gap-4">
+                <div class="grid py-6 grid-cols-2 md:grid-cols-2 gap-4">
                     <div class="grid gap-4">
                         <div class="">
                             <img class="h-[22rem] w-72 rounded" src="{{ asset('gambar/bola.jpg') }}">
@@ -123,5 +123,14 @@
             </div>
 
         </div>
+        <footer class="bg-white px-5 py-6 dark:bg-gray-900">
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/"
+                        class="hover:underline">The Field™</a>. All Rights Reserved.
+                </span>
+            </div>
+        </footer>
     </header>
+
 </x-app-layout>

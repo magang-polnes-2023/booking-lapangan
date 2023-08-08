@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources;
 
+use closure;
+use DateTime;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Booking;
+use App\Models\lapangan;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
@@ -53,6 +56,12 @@ class BookingResource extends Resource
                         Select::make('lapangan_id')
                             ->label('Nama Lapangan')
                             ->relationship('lapangan', 'nama')
+                            ->reactive()
+                            ->afterStateUpdated(function (Closure $set, $state) {
+                                $selected = lapangan::find($state);
+                                $harga = $selected ? $selected->harga : null;
+                                $set('harga', $harga);
+                            })
                             ->required(),
                         TextInput::make('no_telp')
                             ->label('Nomor Telpon')
@@ -63,20 +72,39 @@ class BookingResource extends Resource
                         TextInput::make('durasi')
                             ->label('Durasi Booking')
                             ->numeric()
-                            ->required(),
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function (closure $set, $state, $get) {
+                                $harga = $get('harga');
+                                $total = $harga * $state;
+                                $set('total', $total);
+                            }),
                         TimePicker::make('start_time')
                             ->label('Waktu Mulai')
-                            ->required(),
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function (closure $set, $state, $get) {
+                                $startTime = DateTime::createFromFormat('Y-m-d H:i:s', $state);
+                                $durasi = (int) $get('durasi');
+                                $endTime = clone $startTime;
+                                $endTime->modify("+" . $durasi . "hours");
+                                $endTimeStr = $endTime->format('Y-m-d H:i:s');
+                                $set('end_time', $endTimeStr);
+                            }),
                         TimePicker::make('end_time')
                             ->label('Waktu Selesai')
-                            ->required(),
+                            ->required()
+                            ->disabled(),
+                        TextInput::make('total')
+                            ->label('Total Harga')
+                            ->disabled(),
                         FileUpload::make('bukti')
                             ->label('Bukti bayar'),
                         Select::make('status')
                             ->options([
                                 'belum dibayar' => 'Belum Dibayar',
                                 'sudah dibayar' => 'Sudah Dibayar',
-                                'canceled' => 'Canceled',
+                                'Canceled' => 'Canceled',
                                 'Sedang Diverifikasi' => 'Sedang Diverifikasi',
                                 'selesai' => 'Selesai',
                             ]),
@@ -100,7 +128,7 @@ class BookingResource extends Resource
                     ->options([
                         'belum dibayar' => 'Belum Dibayar',
                         'sudah dibayar' => 'Sudah Dibayar',
-                        'canceled' => 'Canceled',
+                        'Canceled' => 'Canceled',
                         'Sedang Diverifikasi' => 'Sedang Diverifikasi',
                         'selesai' => 'Selesai',
                         'digunakan' => 'Digunakan',

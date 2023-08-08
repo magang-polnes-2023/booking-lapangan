@@ -28,13 +28,13 @@
 
                                 @if (Auth::check())
                                     <a href="{{ route('booking', ['id' => $lap->id]) }}"><button
-                                            class="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">Booking
-                                            Disini</button>
+                                            class="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">Pilih
+                                            Lapangan</button>
                                     </a>
                                 @else
                                     <a onclick="checkIfLoggedIn()"><button
-                                            class="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">Booking
-                                            Disini</button>
+                                            class="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">Pilih
+                                            Lapangan</button>
                                     </a>
                                     <script>
                                         function checkIfLoggedIn() {
@@ -58,5 +58,13 @@
                     </div>
                 @endforeach
             </div>
+            <footer class="bg-white pt-10 dark:bg-gray-900">
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/"
+                            class="hover:underline">The Field™</a>. All Rights Reserved.
+                    </span>
+                </div>
+            </footer>
     </section>
 </x-app-layout>
