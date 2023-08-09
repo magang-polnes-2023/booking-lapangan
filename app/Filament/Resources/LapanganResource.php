@@ -23,7 +23,7 @@ class LapanganResource extends Resource
 {
     protected static ?string $model = Lapangan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-map';
 
     protected static function getNavigationLabel(): string
     {

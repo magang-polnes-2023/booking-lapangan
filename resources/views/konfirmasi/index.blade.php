@@ -98,74 +98,81 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 border dark:border-gray-700 ">
-                                    <div x-data="{ isOpen: false }" class="relative flex">
-                                        <button @click="isOpen = true"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                            <p>Detail</p>
-                                            <p>
-                                                Pembayaran</p>
-                                        </button>
+                                    @if ($data->status === 'selesai')
+                                    @elseif ($data->status === 'Canceled')
+                                    @else
+                                        <div x-data="{ isOpen: false }" class="relative flex">
+                                            <button @click="isOpen = true"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                <p>Detail</p>
+                                                <p>
+                                                    Pembayaran</p>
+                                            </button>
 
-                                        @if ($data->status == 'belum dibayar')
-                                            <div class="px-6 py-1 ">
-                                                <form action="{{ route('cancel', ['id' => $data->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <div
-                                                        class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
-                                                        <button @click="isOpen = false"
-                                                            class="px-4 sm:mx-2 w-full py-2 text text-sm font-medium dark:text-gray-200 dark:border-blue-700 dark:hover:bg-blue-700 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 border border-blue-200 rounded-md hover:bg-blue-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
-                                                            Cancel
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        @endif
+                                            @if ($data->status == 'belum dibayar')
+                                                <div class="px-6 py-1 ">
+                                                    <form action="{{ route('cancel', ['id' => $data->id]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <div
+                                                            class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
+                                                            <button @click="isOpen = false"
+                                                                class="px-4 sm:mx-2 w-full py-2 text text-sm font-medium dark:text-gray-200 dark:border-blue-700 dark:hover:bg-blue-700 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 border border-blue-200 rounded-md hover:bg-blue-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            @endif
 
-                                        <div x-show="isOpen" x-transition:enter="transition duration-300 ease-out"
-                                            x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                            x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                                            x-transition:leave="transition duration-150 ease-in"
-                                            x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                                            x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                            class="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title"
-                                            role="dialog" aria-modal="true">
-                                            <div
-                                                class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                                                <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
-                                                    aria-hidden="true">&#8203;</span>
-
+                                            <div x-show="isOpen" x-transition:enter="transition duration-300 ease-out"
+                                                x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                                x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                                x-transition:leave="transition duration-150 ease-in"
+                                                x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                                x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                                class="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title"
+                                                role="dialog" aria-modal="true">
                                                 <div
-                                                    class="relative inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:max-w-xl rounded-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:p-6">
-
-                                                    <div class="mt-5 text-center">
-                                                        <h3 class="text-lg font-medium text-gray-800 dark:text-white"
-                                                            id="modal-title">
-                                                            Order Detail
-                                                        </h3>
-
-                                                        <p class="mt-2 text-gray-500 dark:text-gray-400 text-justify">
-                                                            Harap kirimkan bukti pembayaran dengan transfer ke nomor
-                                                            rekening berikut: <span class="font-semibold">[1480020403542
-                                                                a.n Hanna Nur Sadifa].</span>
-                                                        </p>
-                                                        <p class="mt-2 text-gray-500 dark:text-gray-400 text-justify">
-                                                            Jika ada pertanyaan, jangan ragu untuk menghubungi layanan
-                                                            pelanggan kami.
-                                                        </p>
-                                                    </div>
+                                                    class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                                                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                                        aria-hidden="true">&#8203;</span>
 
                                                     <div
-                                                        class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
-                                                        <button @click="isOpen = false"
-                                                            class="px-4 sm:mx-2 w-full py-2.5 text-sm font-medium dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
-                                                            Ok
-                                                        </button>
+                                                        class="relative inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:max-w-xl rounded-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:p-6">
+
+                                                        <div class="mt-5 text-center">
+                                                            <h3 class="text-lg font-medium text-gray-800 dark:text-white"
+                                                                id="modal-title">
+                                                                Order Detail
+                                                            </h3>
+
+                                                            <p
+                                                                class="mt-2 text-gray-500 dark:text-gray-400 text-justify">
+                                                                Harap kirimkan bukti pembayaran dengan transfer ke nomor
+                                                                rekening berikut: <span
+                                                                    class="font-semibold">[1480020403542
+                                                                    a.n Hanna Nur Sadifa].</span>
+                                                            </p>
+                                                            <p
+                                                                class="mt-2 text-gray-500 dark:text-gray-400 text-justify">
+                                                                Jika ada pertanyaan, jangan ragu untuk menghubungi
+                                                                layanan
+                                                                pelanggan kami.
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
+                                                            <button @click="isOpen = false"
+                                                                class="px-4 sm:mx-2 w-full py-2.5 text-sm font-medium dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                                                                Ok
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
